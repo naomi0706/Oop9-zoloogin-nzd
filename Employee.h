@@ -57,6 +57,14 @@ public:
         jobDescs.push_back(JobDescription(desc));
     }
 
+    void addJobDescription(const JobDescription& jd) {
+        jobDescs.push_back(jd);
+    }
+
+    void setDivision(const Division& d) {
+        division = d;
+    }
+
     // --- Spouse оноох (0..1) ---
     void setSpouse(Spouse* s) { spouse = s; }
 
