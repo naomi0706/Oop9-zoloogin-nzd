@@ -1,6 +1,5 @@
 #include<iostream>
 using namespace std;
-
 class Mammal {
     public:
     string name;
@@ -11,17 +10,14 @@ class Mammal {
         cout << name << " untaj baina" << endl;
     }
 };
-
 class Think {
     public:
     virtual void thinking() = 0;
 };
-
 class Walk {
     public:
     virtual void walking() = 0;
 };
-
 class Human : public Mammal, public Think, public Walk {
     public:
     void thinking() override {
@@ -31,7 +27,6 @@ class Human : public Mammal, public Think, public Walk {
         cout << "Hun alhaj baina" << endl;
     }
 };
-
 int main() {
     Human h;
     h.name = "Bold";
