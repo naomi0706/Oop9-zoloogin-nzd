@@ -1,37 +1,42 @@
 #include<iostream>
 using namespace std;
-class Car {
+
+class Mammal {
     public:
     string name;
-    void start() {
-        cout << name << " is starting" << endl;
+    void breathing() {
+        cout << name << " amisgalj baina" << endl;
     }
-    void stop() {
-        cout << name << " is stopping" << endl;
+    void sleeping() {
+        cout << name << " untaj baina" << endl;
     }
 };
-class Navigation {
+
+class Think {
     public:
-    virtual void show_direction() = 0;
+    virtual void thinking() = 0;
 };
-class Camera {
+
+class Walk {
     public:
-    virtual void rear_camera() = 0;
+    virtual void walking() = 0;
 };
-class Tesla : public Car, public Navigation, public Camera {
+
+class Human : public Mammal, public Think, public Walk {
     public:
-    void show_direction() override {
-        cout << "Tesla navigation turned on" << endl;
+    void thinking() override {
+        cout << "Hun bodoj baina" << endl;
     }
-    void rear_camera() override {
-        cout << "Tesla rear camera turned on" << endl;
+    void walking() override {
+        cout << "Hun alhaj baina" << endl;
     }
 };
+
 int main() {
-    Tesla t;
-    t.name = "Tesla Model 3";
-    t.start();
-    t.show_direction();
-    t.rear_camera();
-    t.stop();
+    Human h;
+    h.name = "Bold";
+    h.breathing();
+    h.thinking();
+    h.walking();
+    h.sleeping();
 }
