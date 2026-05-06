@@ -2,9 +2,9 @@
 #include <string>
 using namespace std;
 
-// Division class
-// Represents a department where an Employee works.
-// Has a 1-to-1 composition relationship with an Employee.
+// Division класс
+// Employee ажилладаг хэлтсийг илэрхийлнэ.
+// Employee-тай 1-ээс-1 бүрэлдэхүүн хамааралтай.
 class Division {
 private:
     string divisionName;

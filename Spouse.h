@@ -3,8 +3,8 @@
 #include "Person.h"
 using namespace std;
 
-// Spouse class - inherits from Person
-// Represents an Employee's spouse (0..1 relationship with Employee)
+// Spouse класс - Person-аас өвлөн авсан
+// Employee-ийн нөхөр/нөхөрлөл (0..1 харилцаа) болохыг илэрхийлнэ.
 class Spouse : public Person {
 private:
     string anniversaryDate;
@@ -15,7 +15,7 @@ public:
 
     ~Spouse() {}
 
-    // Getter and Setter methods for anniversaryDate
+    // anniversaryDate талбарын үзэгч, тохируулагч функцууд
     string getAnniversaryDate() const { return anniversaryDate; }
     void   setAnniversaryDate(string d) { anniversaryDate = d; }
 };

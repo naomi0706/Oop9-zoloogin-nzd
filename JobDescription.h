@@ -2,9 +2,9 @@
 #include <string>
 using namespace std;
 
-// JobDescription class
-// Represents a specific role or task assigned to an Employee.
-// Has a 1..n composition relationship with an Employee.
+// JobDescription класс
+// Employee-д даалгасан тодорхой үүрэг, ажлыг илэрхийлнэ.
+// Employee-тай 1..n бүрэлдэхүүн хамааралтай.
 class JobDescription {
 private:
     string description;

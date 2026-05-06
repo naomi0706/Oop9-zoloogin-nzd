@@ -8,30 +8,30 @@
 #include "JobDescription.h"
 using namespace std;
 
-// Employee class inherits from Person
-// Demonstrates different types of relationships in Object-Oriented Programming:
-// 1. Composition: Division (1) and JobDescription (1..n) - tightly coupled, destroyed with Employee.
-// 2. Aggregation: Spouse (0..1) and Child (0..n) - loosely coupled, exist independently.
+// Employee класс Person-аас өвлөн авна
+// Объект хандлагын програмчлалд харилцааны төрөлүүдийг харуулна:
+// 1. Бүрэлдэхүүн (Composition): Division (1) болон JobDescription (1..n) - бэхжүүлсэн хамаарал, Employee-тай хамт устна.
+// 2. Агрегаци (Aggregation): Spouse (0..1) болон Child (0..n) - сул хамаарал, бие даан оршин байх боломжтой.
 class Employee : public Person {
 private:
     string companyID;
     string title;
     string startDate;
 
-    // --- Composition Relationships ---
-    // Employee owns these objects. If Employee is destroyed, these are too.
-    Division           division;       // 1 Division relationship
-    vector<JobDescription> jobDescs;   // 1..n JobDescription relationship
+    // --- Бүрэлдэхүүн хамаарал ---
+    // Employee эдгээр объектуудыг эзэмшдэг. Employee уствал эдгээр бас устна.
+    Division           division;       // 1 тасгийн харилцаа
+    vector<JobDescription> jobDescs;   // 1..n JobDescription харилцаа
 
-    // --- Aggregation Relationships ---
-    // Employee holds pointers to these objects, but does not own their lifecycle.
-    Spouse* spouse;                    // 0..1 Spouse relationship (can be null)
-    vector<Child*> children;           // 0..n Child relationship (can be empty)
+    // --- Агрегаци хамаарал ---
+    // Employee эдгээр объектын зааврыг барьдаг, гэхдээ амьдралын мөчлөгийг нь удирддаггүй.
+    Spouse* spouse;                    // 0..1 Spouse харилцаа (null байж болно)
+    vector<Child*> children;           // 0..n Child харилцаа (хоосон байж болно)
 
 public:
-    // Constructor
-    // Initializes the Person base class and the Employee's specific attributes.
-    // Also initializes the division (Composition) and sets spouse to nullptr.
+    // Байгуулагч
+    // Person суурь классыг болон Employee-ийн тодорхой талбаруудыг эхлүүлнэ.
+    // Мөн division-ыг (Composition) эхлүүлж, spouse-г nullptr болгоно.
     Employee(string n, string ss, int a,
              string id, string t, string sd,
              string divName)
@@ -39,25 +39,25 @@ public:
           companyID(id),
           title(t),
           startDate(sd),
-          division(divName),   // Division is created directly within the Employee
-          spouse(nullptr)      // Initially no spouse
+          division(divName),   // Division нь Employee дотор шууд үүснэ
+          spouse(nullptr)      // Эхэндээ spouse байхгүй
     {}
 
-    // Destructor
+    // Устгагч
     ~Employee() {}
 
-    // --- Getter Methods ---
+    // --- Үзэгч функцууд ---
     string getCompanyID() const { return companyID; }
     string getTitle()     const { return title; }
     string getStartDate() const { return startDate; }
 
-    // --- Setter Methods ---
+    // --- Тохируулагч функцууд ---
     void setCompanyID(string id) { companyID = id; }
     void setTitle(string t)      { title     = t; }
     void setStartDate(string sd) { startDate = sd; }
 
-    // --- JobDescription (1..n Composition) ---
-    // Adds a new job description by creating a JobDescription object and adding it to the list.
+    // --- JobDescription (1..n Бүрэлдэхүүн) ---
+    // Шинэ ажлын тодорхойлолтыг үүсгэн жагсаалтад нэмнэ.
     void addJobDescription(string desc) {
         jobDescs.push_back(JobDescription(desc));
     }
@@ -66,22 +66,22 @@ public:
         jobDescs.push_back(jd);
     }
 
-    // --- Division (1 Composition) ---
-    // Sets or updates the division.
+    // --- Division (1 Бүрэлдэхүүн) ---
+    // Division-ыг тохируулж эсвэл шинэчилнэ.
     void setDivision(const Division& d) {
         division = d;
     }
 
-    // --- Spouse (0..1 Aggregation) ---
-    // Assigns a pointer to a Spouse object.
+    // --- Spouse (0..1 Агрегаци) ---
+    // Spouse объектын зааврыг онооно.
     void setSpouse(Spouse* s) { spouse = s; }
 
-    // --- Child (0..n Aggregation) ---
-    // Adds a pointer to a Child object to the children list.
+    // --- Child (0..n Агрегаци) ---
+    // Child объектын зааврыг children жагсаалтанд нэмнэ.
     void addChild(Child* c) { children.push_back(c); }
 
-    // --- Utility Method ---
-    // Prints all information about the employee, including their relationships.
+    // --- Туслах функц ---
+    // Бүх ажилтан болон тэдний харилцааны мэдээллийг хэвлэнэ.
     void printInfo() const {
         cout << "=== Employee ===" << endl;
         cout << "name      : " << getName() << endl;
@@ -90,16 +90,16 @@ public:
         cout << "startDate : " << startDate << endl;
         cout << "division : " << division.getDivisionName() << endl;
 
-        // Print 1..n JobDescription relationship
+        // 1..n JobDescription харилцааг хэвлэнэ
         cout << "Job Descriptions:" << endl;
         for (const auto& jd : jobDescs)
             cout << "  - " << jd.getDescription() << endl;
 
-        // Print 0..1 Spouse relationship if it exists
+        // 0..1 Spouse харилцаа байгаа бол хэвлэнэ
         if (spouse != nullptr)
             cout << "Spouse: " << spouse->getName() << endl;
 
-        // Print 0..n Child relationship if there are any children
+        // Хүүхэд байвал 0..n Child харилцааг хэвлэнэ
         if (!children.empty()) {
             cout << "Children:" << endl;
             for (const auto& c : children)
