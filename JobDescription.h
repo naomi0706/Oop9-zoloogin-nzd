@@ -2,7 +2,9 @@
 #include <string>
 using namespace std;
 
-// Ажлын тодорхойлолт — Employee-тэй 1..n харьцаатай
+// JobDescription class
+// Represents a specific role or task assigned to an Employee.
+// Has a 1..n composition relationship with an Employee.
 class JobDescription {
 private:
     string description;

@@ -3,24 +3,25 @@
 using namespace std;
 
 int main() {
-    // Хэлтэсүүд болон ажлын тодорхойлолтуудын объектууд үүсгэх
+    // 1. Create Division objects representing different departments
     Division itDivision("IT");
     Division hrDivision("HR");
     Division financeDivision("Finance");
 
+    // 2. Create JobDescription objects representing various roles
     JobDescription jd1("System Development");
     JobDescription jd2("Code Review");
     JobDescription jd3("Recruitment");
     JobDescription jd4("Payroll Management");
     JobDescription jd5("Budget Analysis");
 
-    // Employee объектууд үүсгэх ба Division, JobDescription зааж өгөх
+    // 3. Create Employee objects and configure their Division (1 relationship) and JobDescriptions (1..n relationship)
     Employee emp1("Bold", "123-456", 35,
                   "EMP001", "Engineer", "2020-01-15",
                   "IT");
-    emp1.setDivision(itDivision);
-    emp1.addJobDescription(jd1);
-    emp1.addJobDescription(jd2);
+    emp1.setDivision(itDivision); // Assign division
+    emp1.addJobDescription(jd1);  // Add first job description
+    emp1.addJobDescription(jd2);  // Add second job description
 
     Employee emp2("Munkh", "234-567", 29,
                   "EMP002", "HR Specialist", "2019-07-01",
@@ -35,16 +36,16 @@ int main() {
     emp3.addJobDescription(jd4);
     emp3.addJobDescription(jd5);
 
-    // Spouse болон хүүхэдтэй Employee жишээ
+    // 4. Configure Spouse (0..1 relationship) and Child (0..n relationship) for emp1
     Spouse sp("Nomin", "789-012", 32, "2018-06-20");
-    emp1.setSpouse(&sp);
+    emp1.setSpouse(&sp); // Assign a spouse to emp1
 
     Child c1("temuulen", "111-222", 5, "lego");
     Child c2("chinguun", "333-444", 3, "doll");
-    emp1.addChild(&c1);
-    emp1.addChild(&c2);
+    emp1.addChild(&c1); // Add first child to emp1
+    emp1.addChild(&c2); // Add second child to emp1
 
-    // Мэдээлэл хэвлэх
+    // Print initial information for all employees
     emp1.printInfo();
     cout << endl;
     emp2.printInfo();
@@ -52,11 +53,13 @@ int main() {
     emp3.printInfo();
 
     // Task 1: for the objects of Employee class configure spouse and child.
+    // Configure relationships for emp2
     Spouse sp2("Saraa", "999-888", 28, "2021-02-14");
     emp2.setSpouse(&sp2);
     Child c3("Bold", "777-666", 3, "Ball");
     emp2.addChild(&c3);
 
+    // Configure relationships for emp3
     Spouse sp3("Tulga", "555-444", 33, "2019-10-10");
     Child c4("Maral", "333-222", 5, "Book");
     Child c5("Anar", "111-000", 1, "Toy");
@@ -66,6 +69,8 @@ int main() {
 
     // Task 2: for each object of Employee class print all of it's information 
     // (0..1, 0..n, and 1, 1..n relationships are to be programmed correctly)
+    // Print the fully configured profiles of all employees
+    cout << "\n--- Updated Employee Information ---\n" << endl;
     emp1.printInfo();
     cout << endl;
     emp2.printInfo();

@@ -2,7 +2,9 @@
 #include <string>
 using namespace std;
 
-// Хэлтэс — Employee-тэй 1 харьцаатай
+// Division class
+// Represents a department where an Employee works.
+// Has a 1-to-1 composition relationship with an Employee.
 class Division {
 private:
     string divisionName;

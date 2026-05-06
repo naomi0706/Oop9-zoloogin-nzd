@@ -3,7 +3,8 @@
 #include "Person.h"
 using namespace std;
 
-// Child клас — Person-оос удамших (0..n харьцаа Employee-тэй)
+// Child class - inherits from Person
+// Represents an Employee's child (0..n relationship with Employee)
 class Child : public Person {
 private:
     string favoriteToy;
@@ -14,7 +15,7 @@ public:
 
     ~Child() {}
 
-    // Getter, Setter
+    // Getter and Setter methods for favoriteToy
     string getFavoriteToy() const { return favoriteToy; }
     void   setFavoriteToy(string t) { favoriteToy = t; }
 };
