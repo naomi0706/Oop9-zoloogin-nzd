@@ -17,24 +17,21 @@ int main() {
 
     // 3. Employee объектуудыг үүсгэн, тэдний Division (1 харилцаа) болон JobDescriptions (1..n харилцаа)-г тохируулна
     Employee emp1("Bold", "123-456", 35,
-                  "EMP001", "Engineer", "2020-01-15",
-                  "IT");
-    emp1.setDivision(itDivision); // Division-ыг онооно
-    emp1.addJobDescription(jd1);  // Эхний ажлын тодорхойлолтыг нэмнэ
-    emp1.addJobDescription(jd2);  // Хоёр дахь ажлын тодорхойлолтыг нэмнэ
+                  "EMP001", "Engineer", "2020-01-15");
+    emp1.setDivision(&itDivision); // Division-ыг онооно
+    emp1.addJobDescription(&jd1);  // Эхний ажлын тодорхойлолтыг нэмнэ
+    emp1.addJobDescription(&jd2);  // Хоёр дахь ажлын тодорхойлолтыг нэмнэ
 
     Employee emp2("Munkh", "234-567", 29,
-                  "EMP002", "HR Specialist", "2019-07-01",
-                  "HR");
-    emp2.setDivision(hrDivision);
-    emp2.addJobDescription(jd3);
+                  "EMP002", "HR Specialist", "2019-07-01");
+    emp2.setDivision(&hrDivision);
+    emp2.addJobDescription(&jd3);
 
     Employee emp3("Tsetseg", "345-678", 31,
-                  "EMP003", "Finance Analyst", "2021-03-10",
-                  "Finance");
-    emp3.setDivision(financeDivision);
-    emp3.addJobDescription(jd4);
-    emp3.addJobDescription(jd5);
+                  "EMP003", "Finance Analyst", "2021-03-10");
+    emp3.setDivision(&financeDivision);
+    emp3.addJobDescription(&jd4);
+    emp3.addJobDescription(&jd5);
 
     // 4. emp1-д Spouse (0..1 харилцаа) болон Child (0..n харилцаа)-г тохируулна
     Spouse sp("Nomin", "789-012", 32, "2018-06-20");

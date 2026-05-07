@@ -18,10 +18,10 @@ private:
     string title;
     string startDate;
 
-    // --- Бүрэлдэхүүн хамаарал ---
-    // Employee эдгээр объектуудыг эзэмшдэг. Employee уствал эдгээр бас устна.
-    Division           division;       // 1 тасгийн харилцаа
-    vector<JobDescription> jobDescs;   // 1..n JobDescription харилцаа
+    // --- Агрегаци хамаарал (хуучин Бүрэлдэхүүн байсан) ---
+    // Employee эдгээр объектуудын зааврыг барьдаг бөгөөд амьдралын мөчлөгийг удирдахгүй.
+    Division*          division;       // 1 тасгийн харилцаа
+    vector<JobDescription*> jobDescs;  // 1..n JobDescription харилцаа
 
     // --- Агрегаци хамаарал ---
     // Employee эдгээр объектын зааврыг барьдаг, гэхдээ амьдралын мөчлөгийг нь удирддаггүй.
@@ -33,13 +33,12 @@ public:
     // Person суурь классыг болон Employee-ийн тодорхой талбаруудыг эхлүүлнэ.
     // Мөн division-ыг (Composition) эхлүүлж, spouse-г nullptr болгоно.
     Employee(string n, string ss, int a,
-             string id, string t, string sd,
-             string divName)
+             string id, string t, string sd)
         : Person(n, ss, a),
           companyID(id),
           title(t),
           startDate(sd),
-          division(divName),   // Division нь Employee дотор шууд үүснэ
+          division(nullptr),   // Агрегаци тул эхэндээ хоосон байж болно
           spouse(nullptr)      // Эхэндээ spouse байхгүй
     {}
 
@@ -56,19 +55,14 @@ public:
     void setTitle(string t)      { title     = t; }
     void setStartDate(string sd) { startDate = sd; }
 
-    // --- JobDescription (1..n Бүрэлдэхүүн) ---
-    // Шинэ ажлын тодорхойлолтыг үүсгэн жагсаалтад нэмнэ.
-    void addJobDescription(string desc) {
-        jobDescs.push_back(JobDescription(desc));
-    }
-
-    void addJobDescription(const JobDescription& jd) {
+    // --- JobDescription (1..n Агрегаци) ---
+    void addJobDescription(JobDescription* jd) {
         jobDescs.push_back(jd);
     }
 
-    // --- Division (1 Бүрэлдэхүүн) ---
+    // --- Division (1 Агрегаци) ---
     // Division-ыг тохируулж эсвэл шинэчилнэ.
-    void setDivision(const Division& d) {
+    void setDivision(Division* d) {
         division = d;
     }
 
@@ -88,12 +82,15 @@ public:
         cout << "ID       : " << companyID << endl;
         cout << "title    : " << title << endl;
         cout << "startDate : " << startDate << endl;
-        cout << "division : " << division.getDivisionName() << endl;
+        if (division)
+            cout << "division : " << division->getDivisionName() << endl;
+        else
+            cout << "division : None" << endl;
 
         // 1..n JobDescription харилцааг хэвлэнэ
         cout << "Job Descriptions:" << endl;
         for (const auto& jd : jobDescs)
-            cout << "  - " << jd.getDescription() << endl;
+            if (jd) cout << "  - " << jd->getDescription() << endl;
 
         // 0..1 Spouse харилцаа байгаа бол хэвлэнэ
         if (spouse != nullptr)
