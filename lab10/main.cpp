@@ -154,7 +154,7 @@ int main() {
         shapes.add(shape);
     }
 
-    cout << "Нийт объект: " << shapes.length() << "\n\n";
+    cout << "Niit Object: " << shapes.length() << "\n\n";
 
     // Талбайгаар эрэмбэлнэ (bubble sort)
     bubbleSort(shapes);
