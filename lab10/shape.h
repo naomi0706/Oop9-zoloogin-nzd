@@ -2,19 +2,11 @@
 #include <bits/stdc++.h>
 #include <math.h>
 using namespace std;
-
-// ============================================================
-//  POINT STRUCT
-// ============================================================
 struct Point {
     float x;
     float y;
 } typedef Point;
-
-// ============================================================
 //  LAB 07 - SHAPE КЛАССУУД
-// ============================================================
-
 class Shape {
     protected:
         Point points[100];
@@ -22,7 +14,6 @@ class Shape {
         Shape() {}
         virtual ~Shape() {}
 };
-
 class Shape2D : public Shape {
     protected:
         string name;
@@ -36,7 +27,7 @@ class Shape2D : public Shape {
         virtual ~Shape2D() {}
 };
 
-// ---------- Circle ----------
+//  Circle 
 class Circle : public Shape2D {
     protected:
         Point p1;
@@ -51,7 +42,7 @@ class Circle : public Shape2D {
         ~Circle() {}
 };
 
-// ---------- Square ----------
+// Square 
 class Square : public Shape2D {
     protected:
         Point p1, p2, p3, p4;
@@ -69,7 +60,7 @@ class Square : public Shape2D {
         ~Square() {}
 };
 
-// ---------- Triangle ----------
+//  Triangle 
 class Triangle : public Shape2D {
     protected:
         Point p1, p2, p3;
@@ -86,10 +77,6 @@ class Triangle : public Shape2D {
         float perimetr() override { return tal1 + tal2 + tal3; }
         ~Triangle() {}
 };
-
-// ============================================================
 //  FACTORY — санамсаргүй Shape2D* объект үүсгэнэ
-//  count : 20-30 байна
-//  тал/радиус : 1.0 – 10.0
-// ============================================================
+
 vector<Shape2D*> generateRandomShapes(int count);
